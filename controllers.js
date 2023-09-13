@@ -10,12 +10,37 @@ const connection = mysql.createConnection({
     database: 'test'
 });
 
+// const carray = async(jsonArrays) => {
+
+//     let arrayData = [];
+//         let ss = [];
+
+//        Promise.all(
+//             jsonArrays.map(jsonArray => {
+//                 let njson = [];
+//                for(let y in jsonArray) {
+//                 njson.push(jsonArray[y]);
+//                }
+
+//                 ss.push(njson);
+//             })
+//         );
+
+//         arrayData.push(ss);
+//         return arrayData;
+// }
+
+
 exports.uploadCsv = async(req,res)=>{
  
 
         const jsonArrays=await csv().fromFile(csvFilePath);
-///////////////////////////////////////////////////
-////// convert json object to array //////////////
+
+        ///////////////////////////////////////////////////
+        ////// convert json object to array //////////////
+
+        // const arrayData = await carray(jsonArrays);
+        // console.log(arrayData);
 
         const arrayData = [jsonArrays.map(jsonArray => [jsonArray.LastName, jsonArray.FirstName, jsonArray.Address, jsonArray.City])];
         console.log(arrayData);
